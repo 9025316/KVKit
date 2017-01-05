@@ -49,4 +49,6 @@
 
 #import "KVCalendarView.h"
 
+#import "UIViewController+Orientation.h"
+
 #endif /* KVKitHeader_h */
