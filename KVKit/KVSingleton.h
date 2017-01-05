@@ -3,6 +3,44 @@
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define CurrentSystemVersion [[UIDevice currentDevice] systemVersion]
 
+//判断系统版本的宏
+#define DEVICE_IOS6 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)&&\
+([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0))
+#define DEVICE_IOS7 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)&&\
+([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0))
+#define DEVICE_IOS8 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)&&\
+([[[UIDevice currentDevice] systemVersion] floatValue] < 9.0))
+#define DEVICE_IOS9 (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)&&\
+([[[UIDevice currentDevice] systemVersion] floatValue] < 10.0))
+#define DEVICE_IOS10 [[UIDevice currentDevice].systemVersion floatValue] >= 10.0
+
+/// 线程不安全
+#define __PROPERTY_NO_COPY__(type, object)   @property(nonatomic, copy)type      object
+#define __PROPERTY_NO_ASSIGN__(type, object) @property(nonatomic, assign)type    object
+
+#define __PROPERTY_NO_STRONG__(type, object) @property(nonatomic,strong)type object
+#define __PROPERTY_NO_WEAK__(type, object)   @property(nonatomic,weak)type   object
+
+// 线程安全
+#define __PROPERTY_AT_COPY__(type, object)   @property(atomic,copy)type      object
+#define __PROPERTY_AT_ASSIGN__(type, object) @property(atomic,assign)type    object
+#define __PROPERTY_AT_STRONG__(type, object) @property(atomic,strong)type    object
+#define __PROPERTY_AT_WEAK__(type, object)   @property(atomic,weak)type   object
+
+// 只读(线程不安全)
+#define __PROPERTY_NO_COPY__READONLY__(type, object)   @property(nonatomic,copy,readonly)type   object
+#define __PROPERTY_NO_ASSIGN__READONLY__(type, object) @property(nonatomic,assign,readonly)type object
+#define __PROPERTY_NO_STRONG__READONLY__(type, object) @property(nonatomic,strong,readonly)type object
+#define __PROPERTY_NO_WEAK__READONLY__(type, object)   @property(nonatomic,weak,readonly)type   object
+
+// 只读(线程安全)
+#define __PROPERTY_AT_COPY__READONLY__(type, object)   @property(atomic,copy,readonly)type      object
+#define __PROPERTY_AT_ASSIGN__READONLY__(type, object) @property(atomic,assign,readonly)type    object
+#define __PROPERTY_AT_STRONG__READONLY__(type, object) @property(atomic,strong,readonly)type    object
+#define __PROPERTY_AT_WEAK__READONLY__(type, object)   @property(atomic,weak,readonly)type      object
+
+#define __GET_APPDELEGGATE__(object) AppDelegate *object = (AppDelegate *)[UIApplication sharedApplication].delegate;
+
 //NavBar高度
 #define NavigationBar_HEIGHT 44
 //获取屏幕 宽度、高度

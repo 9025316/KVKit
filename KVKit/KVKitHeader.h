@@ -45,4 +45,8 @@
 
 #import "UIViewController+KVphoto.h"
 
+#import "KVCalendarTool.h"
+
+#import "KVCalendarView.h"
+
 #endif /* KVKitHeader_h */
