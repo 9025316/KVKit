@@ -109,6 +109,9 @@ timer = nil; \
 } \
 }
 
+// 判断字典是否包含某个key
+#define DICKEY_ISCONTKEY__(NSDIC, OBJECT)     [[NSDIC allKeys] containsObject:OBJECT]
+
 /**
  *  get the saved objects       获得存储的对象
  */

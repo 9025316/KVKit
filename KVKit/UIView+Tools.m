@@ -14,55 +14,65 @@
     
     self.layer.borderWidth = bWidth;
     
-    if (bColor != nil) {
-        self.layer.borderColor = bColor.CGColor;
-    }
+    if (bColor != nil) self.layer.borderColor = bColor.CGColor;
     
     if (radius > 0) {
+        
         self.layer.cornerRadius = radius;
+        
         self.layer.masksToBounds = YES;
     }
 }
 
 + (instancetype)viewWithFrame:(CGRect)frame {
+    
     UIView *view = nil;
-    if (!view) {
-        view = [[[self class] alloc] initWithFrame:frame];
-    }
+    
+    if (!view) view = [[[self class] alloc] initWithFrame:frame];
+    
     return view;
 }
 
 + (instancetype)XIBWithFrame:(CGRect)frame {
+    
     NSString *className = NSStringFromClass(self);
+    
     UIView *xibView = [[[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil] firstObject];
+    
     xibView.frame = frame;
+    
     if(xibView == nil){
+        
         NSLog(@"CoreXibView：从xib创建视图失败，当前类是：%@",className);
     }
     return xibView;
 }
 
 - (void)addSubviewsWithArray:(NSArray *)subViews {
+    
     for (UIView *view in subViews) {
+        
         [self addSubview:view];
     }
 }
 
 + (void)removeViews:(NSArray *)views {
+    
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         for (UIView *view in views) {
+            
             [view removeFromSuperview];
         }
     });
 }
 
-
 - (void)removeAllSubviews {
+    
     [self.subviews enumerateObjectsUsingBlock:^( UIView *obj, NSUInteger idx, BOOL *stop) {
+        
         [obj removeFromSuperview];
     }];
 }
-
-
 
 @end

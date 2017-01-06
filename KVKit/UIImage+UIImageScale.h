@@ -20,4 +20,13 @@
  */
 + (UIImage *)imageCompressForSize:(UIImage *)sourceImage targetSize:(CGSize)size;
 
+
+/**
+ * 根据传入的图片,生成一终带有边框的圆形图片.
+ * borderW边框宽度
+ * borderColor:边框颜色
+ * image:要生成的原始图片.
+ **/
++ (UIImage *)imageWithBorderW:(CGFloat)borderW borderColor:(UIColor *)color image:(UIImage *)image;
+
 @end

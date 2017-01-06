@@ -38,37 +38,51 @@ static  char blockKey;
 {
     return objc_getAssociatedObject(self, &blockKey);
 }
--(void)showCanEdit:(BOOL)edit photo:(photoBlock)block
-{
+-(void)showCanEdit:(BOOL)edit photo:(photoBlock)block {
+    
     if(edit) canEdit = edit;
     
     self.photoBlock = [block copy];
-    UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册中获取", nil];
-    sheet.tag = 2599;
-    [sheet showInView:self.view];
     
+    UIActionSheet *sheet  = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册中获取", nil];
+    
+    sheet.tag = 2599;
+    
+    [sheet showInView:self.view];
 }
+
 #pragma mark - action sheet delegte
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag==2599)
-    {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (actionSheet.tag==2599) {
         //权限
         ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+        
         if (author == ALAuthorizationStatusRestricted || author ==ALAuthorizationStatusDenied) {
-            NSString *photoType = buttonIndex==0?@"相机":@"相册";
+            
+            NSString *photoType = buttonIndex == 0 ? @"相机" : @"相册";
+            
             NSString * title = [NSString stringWithFormat:@"%@权限未开启",photoType];
+            
             NSString * msg = [NSString stringWithFormat:@"请在系统设置中开启该应用%@服务\n(设置->隐私->%@->开启)",photoType,photoType];
+            
             NSString * cancelTitle = @"知道了";
+            
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:nil, nil];
+            
             [alertView show];
+            
             debugLog(@"%@权限未开启",photoType);
+            
             return;
         }
         //跳转到相机/相册页面
         UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
+        
         imagePickerController.delegate = self;
+        
         imagePickerController.allowsEditing = canEdit;
+        
         switch (buttonIndex)
         {
             case 0:
@@ -95,8 +109,8 @@ static  char blockKey;
     }
 }
 #pragma mark - image picker delegte
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image;
@@ -110,7 +124,6 @@ static  char blockKey;
         
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
     }
-    
     if(self.photoBlock) self.photoBlock(image);
 }
 

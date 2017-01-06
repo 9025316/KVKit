@@ -37,6 +37,8 @@
 
 #import "UIImage+UIImageScale.h"
 
+#import "UIImageView+Radius.h"
+
 #import "UITextField+Category.h"
 
 #import "KVSingleton.h"
