@@ -18,10 +18,7 @@
 /** 强制竖屏 **/
 + (void)orientationVertical;
 
-/**
- *  获取发布版本号
- *
- */
+/** 获取发布版本号 **/
 + (NSString *)getBigVersion;
 
 /** 生成一个uuid **/

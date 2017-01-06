@@ -37,8 +37,7 @@
     }
 }
 
-+ (void)orientationVertical
-{
++ (void)orientationVertical {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
         
         SEL selector = NSSelectorFromString(@"setOrientation:");
@@ -52,96 +51,104 @@
         int val = UIDeviceOrientationPortrait;
         
         [invocation setArgument:&val atIndex:2];
-        if (selector) {
-            [invocation invoke];
-        }
+        
+        if (selector) [invocation invoke];
     }
 }
 
-+ (NSString *)insertUuid
-{
++ (NSString *)insertUuid {
+    
     CFUUIDRef uuid_ref = CFUUIDCreate(NULL);
+    
     CFStringRef uuid_string_ref= CFUUIDCreateString(NULL, uuid_ref);
     
     CFRelease(uuid_ref);
+    
     NSString *uuid = [NSString stringWithString:(__bridge NSString*)uuid_string_ref];
     
     CFRelease(uuid_string_ref);
+    
     return uuid;
 }
 
-+ (NSString *)getUuidAdv
-{
++ (NSString *)getUuidAdv {
+    
     return [[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString];
 }
 
-+ (NSString *)getSystemVersion
-{
++ (NSString *)getSystemVersion {
+    
     return [[UIDevice currentDevice] systemVersion];
 }
 
 + (NSString *)getBigVersion{
+    
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    
     NSString *appVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
+    
     return appVersion;
 }
 
-+ (NSString *)getAppVersion
-{
++ (NSString *)getAppVersion {
+    
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    
     NSString *appVersion = [infoDic objectForKey:@"CFBundleVersion"];
+    
     return appVersion;
 }
 
 
-+ (NSString *)getDevice
-{
++ (NSString *)getDevice {
     
     struct utsname systemInfo;
+    
     uname(&systemInfo);
+    
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     
     NSString *modelNameString = [self getDm:deviceString];
-    if(![NSString verificationEmpty:modelNameString])
-    {
+    
+    if(![NSString verificationEmpty:modelNameString]) {
+        
         NSArray *strs = [modelNameString componentsSeparatedByString:@" "];
+        
         NSString *str = @"";
-        if(strs.count > 0)
-        {
-            str = strs[0];
-        }
+        
+        if(strs.count > 0) str = strs[0];
+        
         return str;
     }
     return @"";
 }
 
-+ (NSString *)getDeviceModel
-{
++ (NSString *)getDeviceModel {
 
     struct utsname systemInfo;
+    
     uname(&systemInfo);
+    
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     
     NSString *modelNameString = [self getDm:deviceString];
-    if(![NSString verificationEmpty:modelNameString])
-    {
+    
+    if(![NSString verificationEmpty:modelNameString]) {
+        
         NSArray *strs = [modelNameString componentsSeparatedByString:@" "];
+        
         NSString *str = @"";
-        if(strs.count == 1)
-        {
+        if(strs.count == 1) {
+            
             str = strs[0];
-        }
-        else if(strs.count > 1)
-        {
+            
+        }else if(strs.count > 1) {
+            
             for (int i = 0; i < strs.count - 1; i++) {
-                if([NSString verificationEmpty:str])
-                {
-                    str = strs[i];
-                }
-                else
-                {
-                    str = [NSString stringWithFormat:@"%@_%@",str, strs[i]];
-                }
+                
+                if([NSString verificationEmpty:str]) str = strs[i];
+                
+                else str = [NSString stringWithFormat:@"%@_%@",str, strs[i]];
             }
         }
         return str;
