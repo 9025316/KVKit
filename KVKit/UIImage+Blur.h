@@ -22,12 +22,12 @@
  *
  *  @return 模糊处理之后的图像
  */
--(UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur
+-(UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur;
 
 /**
  * imager 根据传入的图片,生成一张模糊图片
  * blurValue 模糊程序
  **/
-- (UIImage *)grCIImage:(UIImage *)imager blurValue:(NSInteger)value
+- (UIImage *)grCIImage:(UIImage *)imager blurValue:(NSInteger)value;
 
 @end
