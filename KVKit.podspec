@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '韩问' => '9025316@qq.com' }
-  s.source           = { :git => 'https://github.com/9025316/KVKit.git', :tag => '0.5.0 }
+  s.source           = { :git => 'https://github.com/9025316/KVKit.git', :tag => '0.5.0' }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '7.0'
