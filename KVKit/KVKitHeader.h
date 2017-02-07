@@ -13,6 +13,8 @@
 
 #import "KVButton.h"
 
+#import "UIButton+Block.h"
+
 #import "QROrBarCodeView.h"
 
 #import "DeviceUtils.h"
