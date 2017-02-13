@@ -55,4 +55,16 @@
 
 #import "UIViewController+Orientation.h"
 
+#import "NSString+MD5.h"
+
+#import "NSTimer+Category.h"
+
+#import "UIButton+Category.h"
+
+#import "UIView+BGFrame.h"
+
+#import "UIView+Animation.h"
+
+#import "UIView+Category.h"
+
 #endif /* KVKitHeader_h */
