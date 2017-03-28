@@ -21,5 +21,5 @@
 /** 移除所有子视图 */
 - (void)removeAllSubviews;
 /** 获取view的controller */
-- (UIViewController *)viewcontroller
+- (UIViewController *)viewcontroller;
 @end
