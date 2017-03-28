@@ -75,4 +75,20 @@
     }];
 }
 
+- (UIViewController *)viewcontroller{
+    
+    //---取代下一个响应者
+    UIResponder *next  = self.nextResponder;
+    do{
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+            break;
+        }
+        //---去下一个响应者
+        next = next.nextResponder;
+    }while (next != nil);
+    
+    return nil;
+}
+
 @end
